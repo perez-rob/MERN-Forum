@@ -5,14 +5,12 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
+            console.log("HERE");
             if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
-
-                return userData;
+              return User.findOne({ _id: context.user._id });
             }
-
-            throw new AuthenticationError('Not logged in');
-        },
+            throw new AuthenticationError("You need to be logged in!");
+          },
 
         getTopicByName: async (parent, args) => {
             const postData = await Topic.findOne({ name: args.name }).populate({
@@ -127,10 +125,16 @@ const resolvers = {
         },
         createPost: async (parent, {postData}, context) => {
             const newPost = await Post.create({
+                question: postData.question,
                 content: postData.content,
                 author: postData.author,
                 topic: postData.topic
-            })
+            });
+            const updatedTopic = await Topic.findByIdAndUpdate(
+                { _id: postData.topic },
+                { $push: { posts: postData } },
+                { new: true }
+            );
             return newPost;
         }
 

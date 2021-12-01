@@ -1,74 +1,65 @@
 [
     {
-        "name": "Unit 1 - HTML, Git, CSS"
+        "name": "HTML"
     },
     {
-        "name": "Unit 2 - Advanced CSS"
+        "name": "CSS"
     },
     {
-        "name": "Unit 3 - JavaScript"
+        "name": "Basic JavaScript"
     },
     {
-        "name": "Unit 4 - Web APIs"
+        "name": "Web APIs"
     },
     {
-        "name": "Unit 5 - Third Party APIs"
+        "name": "Third Party APIs"
     },
     {
-        "name": "Unit 6 - Server Side APIs"
+        "name": "Server Side APIs"
     },
     {
-        "name": "Unit 7 - Project 1"
+        "name": "Project 1 Help"
     },
     {
-        "name": "Unit 8 - Project 1 Continued"
+        "name": "Node.js"
     },
     {
-        "name": "Unit 9 - NodeJS"
+        "name": "Object Oriented Programming (OOP)"
     },
     {
-        "name": "Unit 10 - OOP"
+        "name": "Express.js"
     },
     {
-        "name": "Unit 11 - Express"
+        "name": "SQL & Relational DBs"
     },
     {
-        "name": "Unit 12 - SQL"
+        "name": "Object Relational Mapping (ORM)"
     },
     {
-        "name": "Unit 13 - ORM"
+        "name": "Model-View-Controller (MVC)"
     },
     {
-        "name": "Unit 14 - MVC"
+        "name": "Project 2 Help"
     },
     {
-        "name": "Unit 15 - Project 2"
+        "name": "Computer Science (CS)"
     },
     {
-        "name": "Unit 16 - Project 2 Continued"
+        "name": "MongoDB & NoSQL"
     },
     {
-        "name": "Unit 17 - CS"
+        "name": "Progressive Web Applications (PWA)"
     },
     {
-        "name": "Unit 18 - NoSQL"
+        "name": "ReactJS"
     },
     {
-        "name": "Unit 19 - PWA"
+        "name": "MERN - Mongo.Express.React.Node."
     },
     {
-        "name": "Unit 20 - React"
+        "name": "State in React"
     },
     {
-        "name": "Unit 21 - MERN"
-    },
-    {
-        "name": "Unit 22 - State"
-    },
-    {
-        "name": "Unit 23 - Project 3"
-    },
-    {
-        "name": "Unit 24 - Project 3 Continued"
+        "name": "Project 3 Help"
     }
 ]

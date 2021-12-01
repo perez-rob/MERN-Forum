@@ -1,18 +1,30 @@
 [
     {
-        "content": "random post 1",
+        "content": "I think you better ask for help in another topic....",
         "upvotes": 2
     },
     {
-        "content": "random post 2",
+        "content": "check stack overflow",
         "upvotes": 0
     },
     {
-        "content": "random post 3",
+        "content": "how many times is this question going to be asked??",
         "upvotes": 1
     },
     {
-        "content": "random post 4",
+        "content": "Thanks for pointing this out!!",
+        "upvotes": 4
+    },
+    {
+        "content": "I've been wondering the same thing, maybe someone can message Jung....??",
+        "upvotes": 0
+    },
+    {
+        "content": "check the Unit mini-project, they did something similar",
+        "upvotes": 1
+    },
+    {
+        "content": "Thanks!",
         "upvotes": 4
     }
 ]

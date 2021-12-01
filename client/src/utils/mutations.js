@@ -103,11 +103,13 @@ export const CREATE_COMMENT = gql`
 `;
 
 export const CREATE_POST = gql`
-  mutation createPost($content: String!, $author: User!, $topic: Topic!) {
-    createPost(content: $content, author: $author, topic: $topic) {
-      postId
+  mutation createPost($question: String!, $content: String!, $author: User!, $topic: Topic!) {
+    createPost(question: $question,content: $content, author: $author, topic: $topic) {
+      _id
+      question
       content
-      
+      author
+      topic
     }
   }
 `;

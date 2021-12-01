@@ -8,7 +8,6 @@ export default function AddAPost(props) {
   const [postFormData, setPostFormData] = useState({ question: '', content: '', author: Auth.getProfile().data.username || "", topic: props.topicId });
 
   const [createPost, { error }] = useMutation(CREATE_POST);
-  const [addPost, { error2 }] = useMutation(ADD_POST);
 
  
   const handleInputChange = (event) => {
@@ -33,14 +32,8 @@ export default function AddAPost(props) {
         throw error
       }
 
-      const postAssign = await addPost({
-        variables: { ...data },
-      });
-
-      if (!postAssign) {
-        console.log('post not assigned')
-        throw error2
-      }
+    
+  
 
     } catch (e) {
       console.error("error: ", e);
