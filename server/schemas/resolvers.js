@@ -27,14 +27,6 @@ const resolvers = {
                             path: 'author',
                             model: 'User'
                         },
-                    },
-                    {
-                        path: 'comments',
-                        model: 'Comment',
-                        populate: {
-                            path: 'author',
-                            model: 'User'
-                        }
                     }
                 ]
             });
