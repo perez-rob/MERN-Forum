@@ -4,7 +4,7 @@
 
 ## Description
 
-This app is a study forum for coding bootcamp cohorts where users can sign up and create a profile to create/comment/delete/upvote posts across different pages of the application, such as study topics, coding questions, job postings, interview prep, etc.
+This app is a study forum for coding bootcamp cohorts where users can sign up and create a profile to create/comment/delete/upvote posts across different pages of the application, such as study topics, coding questions, jobl postings, interview prep, etc.
 
 ## Table of Contents
 
