@@ -26,23 +26,16 @@ export const ADD_USER = gql`
 
 
 export const REMOVE_COMMENT = gql`
-    mutation removeComment($commentId: ID!) {
-        removeComment(commentId: $commentId) {
-            postId
-            author {
-              username
-            }
-            content
-            comments {
-                commentId
-                author {
-                  username
-                }
-                content
-                upvotes
-            }
-        }
-    }
+mutation removeComment($commentId: ID!, $postId: ID!) {
+  removeComment(commentId: $commentId, postId: $postId) {
+      _id
+      content
+      author {
+        _id
+      }
+      upvotes
+  }
+}
 `;
 
 export const CREATE_COMMENT = gql`

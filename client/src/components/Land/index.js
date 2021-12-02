@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import circletext from "../../assets/circletext.png";
+import M from "materialize-css";
 import "./style.css";
 
 export default function Land() {
+
   return (
     <div className="landing">
       <div className="landing-header">

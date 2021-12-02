@@ -1,13 +1,11 @@
 import React, { useContext, useEffect } from "react";
 //* import { Link } from "react-router-dom";
 import SeeCommModal from "../components/SeeCommModal";
-import CommModal from "../components/CommModal";
 import AddAPost from "../components/Post";
 import { useSearchParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_TOPIC_BY_NAME } from "../utils/queries";
 import "./styles/topic.css";
-import { ADD_COMMENT, CREATE_COMMENT } from "../utils/mutations";
 import CommentForm from "../components/CommentForm";
 
 const Topic = () => {

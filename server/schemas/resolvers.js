@@ -88,32 +88,19 @@ const resolvers = {
             );
             return newComment;
         },
-        // addComment: async (parent, { commentData }, context) => {
-        //     if (context.post) {
-        //         const updatedPost = await Post.findByIdAndUpdate(
-        //             { _id: context.post._id },
-        //             { $push: { comments: commentData } },
-        //             { new: true }
-        //         );
-
-        //         return updatedPost;
-        //     }
-
-        //     throw new AuthenticationError('You need to be logged in!');
-        // },
         removeComment: async (parent, { commentId }, context) => {
-            if (context.topic) {
-                const updatedTopic = await Topic.findOneAndUpdate(
-                    { _id: context.topic._id },
-                    { $pull: { comments: { commentId } } },
-                    { new: true }
+            if (context.user) {
+                const updatedPost = await Post.findOneAndUpdate(
+                  { _id: context.user._id },
+                  { $pull: { savedBooks: { bookId } } },
+                  { new: true }
                 );
-
-                return updatedTopic;
-            }
-
-            throw new AuthenticationError('You need to be logged in!');
-        },
+        
+                return updatedUser;
+              }
+        
+              throw new AuthenticationError('You need to be logged in!');
+            },
         createPost: async (parent, {question, content, author, topic}, context) => {
 
 
