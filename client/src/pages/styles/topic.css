@@ -29,12 +29,27 @@
 }
 
 .post-author-plus {
-  display: flex;
+  display:flex;
   justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+
+}
+
+.del-comm-btn {
+  max-width: 20vw;
 }
 
 .toasty {
+  max-width: 200px;
   text-align: center;
+  font-weight: 900;
+  font-size: larger;
+  background-color: #fff3ec;
+  border: solid black 2px;
+  border-radius: 10px;
+  margin:10px;
+  padding: 5px;
 }
 
 .topic-card {
