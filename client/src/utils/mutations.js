@@ -51,6 +51,22 @@ export const CREATE_COMMENT = gql`
   }
 `;
 
+export const REMOVE_POST = gql`
+  mutation removePost($postId: ID!, $topicId: ID!) {
+    removePost(postId: $postId, topicId: $topicId) {
+      _id
+      question
+      content
+      author {
+        _id
+      }
+      topic {
+        _id
+      }
+    }
+  }
+`;
+
 export const CREATE_POST = gql`
   mutation createPost($question: String!, $content: String!, $author: ID!, $topic: ID!) {
     createPost(question: $question, content: $content, author: $author, topic: $topic) {

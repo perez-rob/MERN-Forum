@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            console.log("HERE");
             if (context.user) {
               return User.findOne({ _id: context.user._id });
             }
@@ -116,9 +115,23 @@ const resolvers = {
                 { new: true }
             );
             return newPost;
-        }
+        },
+        removePost: async (parent, { postId }, context) => {
+            if (context.user) {
+                const updatedPost = await Post.findOneAndUpdate(
+                  { _id: context.user._id },
+                  { $pull: { savedBooks: { bookId } } },
+                  { new: true }
+                );
+        
+                return updatedUser;
+              }
+        
+              throw new AuthenticationError('You need to be logged in!');
+            },
 
     },
+    
 };
 
 module.exports = resolvers;

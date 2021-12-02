@@ -51,6 +51,7 @@ export default function AddAPost(props) {
             Your username
           </label>
           <input
+            readOnly
             type="text"
             id="author"
             placeholder="Your username"

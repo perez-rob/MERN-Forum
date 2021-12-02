@@ -29,11 +29,13 @@ query getTopicByName($name: String!) {
             question
             content
             author {
+                _id
                 username
             }
             comments {
                 content
                 author {
+                    _id
                     username
                 }
                 upvotes

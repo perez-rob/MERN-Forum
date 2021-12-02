@@ -28,6 +28,15 @@
   font-weight: bold;
 }
 
+.post-author-plus {
+  display: flex;
+  justify-content: space-between;
+}
+
+.toasty {
+  text-align: center;
+}
+
 .topic-card {
   background-color: #fff3ec;
   border: 1px solid #55423d;
