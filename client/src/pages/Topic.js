@@ -8,6 +8,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_TOPIC_BY_NAME } from "../utils/queries";
 import "./styles/topic.css";
 import { ADD_COMMENT, CREATE_COMMENT } from "../utils/mutations";
+import CommentForm from "../components/CommentForm";
 
 const Topic = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -48,24 +49,7 @@ const Topic = () => {
                     <p>{post.content}</p>
                   </div>
                   {/* display flex on following div so that the button goes beside the input */}
-                  <div className="comment-form">
-                    <div className="input-field comment-input col s8">
-                      <input
-                        id="comment_text"
-                        type="text"
-                        className="validate"
-                      ></input>
-                      <label for="textarea1">Enter your comments here</label>
-                    </div>
-                    <button
-                      className="btn waves-effect waves-light col s2 postBtn"
-                      type="submit"
-                      name="action"
-                    >
-                      Comment
-                      <i className="material-icons right">send</i>
-                    </button>
-                  </div>
+                  <CommentForm postId={post._id} />
                   <div className="container comment-box card-action">
                     <h6 className="comments-header">
                       Comments{" "}

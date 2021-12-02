@@ -25,7 +25,7 @@ export default function Chat() {
     }
     return (
         <div id="chat">
-           <button><Link to="/account">Login to View</Link></button>
+     <Link to="/account"><button>Login to View</button></Link>
         
 
             

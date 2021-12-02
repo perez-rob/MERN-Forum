@@ -25,8 +25,8 @@ query getTopicByName($name: String!) {
         _id
         name
         posts {
+            _id
             question
-            postId
             content
             author {
                 username

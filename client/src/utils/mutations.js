@@ -24,49 +24,6 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_POST = gql`
-  mutation addPost($postData: PostInput!) {
-    addPost(postData: $postData) {
-      topicId
-      question
-      posts {
-          postId
-          author {
-            username
-          }
-          content
-          comments {
-              commentId
-              author {
-                username
-              }
-              content
-              upvotes
-          }
-      }
-    }
-  }
-`;
-
-export const ADD_COMMENT = gql`
-  mutation addComment($commentData: CommentInput!) {
-    addComment(commentData: $commentData) {
-        postId
-        author {
-          username
-        }
-        content
-        comments {
-            commentId
-            author {
-              username
-            }
-            content
-            upvotes
-        }
-    }
-  }
-`;
 
 export const REMOVE_COMMENT = gql`
     mutation removeComment($commentId: ID!) {
@@ -89,27 +46,30 @@ export const REMOVE_COMMENT = gql`
 `;
 
 export const CREATE_COMMENT = gql`
-  mutation createComment($content: String!, $author: User!, $upvotes: Int!) {
-    createComment(content: $content) {
-      comment {
+  mutation createComment($content: String!, $author: ID!, $upvotes: Int!) {
+    createComment(content: $content, author: $author, upvotes: $upvotes) {
+        _id
         content
         author {
-          username
+          _id
         }
         upvotes
-      }
     }
   }
 `;
 
 export const CREATE_POST = gql`
-  mutation createPost($question: String!, $content: String!, $author: User!, $topic: Topic!) {
-    createPost(question: $question,content: $content, author: $author, topic: $topic) {
+  mutation createPost($question: String!, $content: String!, $author: ID!, $topic: ID!) {
+    createPost(question: $question, content: $content, author: $author, topic: $topic) {
       _id
       question
       content
-      author
-      topic
+      author {
+        _id
+      }
+      topic {
+        _id
+      }
     }
   }
 `;

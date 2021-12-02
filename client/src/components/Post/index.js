@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { ADD_POST, CREATE_POST } from "../../utils/mutations";
+import { CREATE_POST } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 
 
 export default function AddAPost(props) {
-  const [postFormData, setPostFormData] = useState({ question: '', content: '', author: Auth.getProfile().data.username || "", topic: props.topicId });
+  const [postFormData, setPostFormData] = useState({ question: '', content: '', author: Auth.getProfile().data._id || "", topic: props.topicId });
 
   const [createPost, { error }] = useMutation(CREATE_POST);
 
@@ -18,34 +18,29 @@ export default function AddAPost(props) {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    event.preventDefault();
-
     try {
       console.log("HEE0", postFormData)
+
       const { data } = await createPost({
-        variables: { ...postFormData },
+        variables: { question: postFormData.question,
+          content: postFormData.content,
+          author: postFormData.author,
+          topic: postFormData.topic },
+      });
+      setPostFormData({
+        ...postFormData,
+        question: '',
+        content: ''
       });
 
-      if (!data) {
-        console.log('post not created')
-        throw error
-      }
-
-    
+      window.location.reload();
   
 
     } catch (e) {
       console.error("error: ", e);
     }
 
-    // clear form values
-    setPostFormData({
-      question: '',
-      content: '',
-      author: '',
-      topic:''
-    });
+   
   };
 
   return (
@@ -73,6 +68,7 @@ export default function AddAPost(props) {
             id="question"
             placeholder="Your Post Title"
             name="question"
+            value={postFormData.question}
             onChange={handleInputChange}
           />
         </div>
@@ -86,6 +82,7 @@ export default function AddAPost(props) {
             id="postContent"
             placeholder="Your Content"
             name="content"
+            value={postFormData.content}
             onChange={handleInputChange}
           />
         </div>

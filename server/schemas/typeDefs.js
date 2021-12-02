@@ -11,22 +11,22 @@ const typeDefs = gql`
   type Topic {
     _id: ID!
     name: String!
-    posts: [Post]
+    posts: [Post]!
   }
 
   type Post {
-    postId: ID
+    _id: ID!
     author: User
-    topic: Topic!
+    topic: Topic
     question: String!
     content: String!
     comments: [Comment]
   }
 
   type Comment {
-    commentId: ID!
+    _id: ID!
     author: User
-    content: String
+    content: String!
     upvotes: Int
   }
 
@@ -35,48 +35,19 @@ const typeDefs = gql`
     user: User
   }
 
-  input CommentInput {
-    commentId: ID!
-    author: String!
-    content: String!
-    upvotes: Int
-  }
-
-  input AuthorCommentInput {
-    userId: ID!
-    username: String!
-  }
-
-  input AuthorPostInput {
-    userId: ID!
-    username: String!
-  }
-
-  input TopicPostInput {
-    topicId: ID!
-    name: String!
-  }
-
-  input PostInput {
-    question: String!
-    content: String!
-    comments: [String]
-  }
-
+  
   type Query {
-    me: User
-    getTopicByName(name: String!): Topic
+    me: User!
+    getTopicByName(name: String!): Topic!
     getTopics: [Topic]!
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addPost(postData: PostInput!): Topic
     removeComment(commentId: ID!): Post
-    addComment(postId: ID!): Post
-    createComment(content: String!, author: AuthorCommentInput!): Comment
-    createPost(content: String!, author: AuthorPostInput!, topic: TopicPostInput!): Post
+    createComment(content: String!, author: ID!, upvotes: Int): Comment
+    createPost(question: String!,content: String!, author: ID!, topic: ID!): Post
   }
   `;
   // addComment(commentData: CommentInput!): Post
