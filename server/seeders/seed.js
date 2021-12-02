@@ -4,6 +4,7 @@ const userSeeds = require('./userSeeds.json');
 const topicSeeds = require('./topicSeeds.json');
 const postSeeds = require('./postSeeds.json');
 const commentSeeds = require('./commentSeeds.json');
+const bcrypt = require('bcrypt');
 
 
 db.once('open', async () => {
@@ -94,6 +95,8 @@ db.once('open', async () => {
             ];
             await topics[1].save();
 
+            const saltRounds = 10;
+    
             users[0].comments = [comments[0]._id,
             comments[5]._id];
             users[0].posts = [posts[0]._id];

@@ -46,8 +46,8 @@ export const REMOVE_COMMENT = gql`
 `;
 
 export const CREATE_COMMENT = gql`
-  mutation createComment($content: String!, $author: ID!, $upvotes: Int!) {
-    createComment(content: $content, author: $author, upvotes: $upvotes) {
+  mutation createComment($content: String!, $author: ID!, $upvotes: Int!, $postId: ID!) {
+    createComment(content: $content, author: $author, upvotes: $upvotes, postId: $postId) {
         _id
         content
         author {

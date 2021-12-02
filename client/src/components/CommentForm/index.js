@@ -36,7 +36,7 @@ export default function CommentForm(props) {
         content: ''
       });
 
-      // window.location.reload();
+      window.location.reload();
   
     } catch (e) {
       console.error("error: ", e);
@@ -47,14 +47,14 @@ export default function CommentForm(props) {
     <form className="comment-form" onSubmit={handleFormSubmit}>
     <div className="input-field comment-input col s8">
       <input
-        id="comment_text"
+        id={parentPost}
         type="text"
         className="validate"
         name="content"
         value={postFormData.content}
         onChange={handleInputChange}
       ></input>
-      <label for="textarea1">Enter your comments here</label>
+      <label for={parentPost}>Enter your comments here</label>
     </div>
     <button
       className="btn waves-effect waves-light col s2 postBtn"

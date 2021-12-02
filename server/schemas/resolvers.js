@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Topic, Post } = require('../models');
+const { User, Topic, Post, Comment } = require('../models');
 const { signToken } = require('../utils/auth');
 const mongoose = require('mongoose');
 
@@ -73,7 +73,8 @@ const resolvers = {
         createComment: async(parent, {content, author, upvotes, postId}, context) => {
             const newComment = await Comment.create({
                 content: content,
-                author: mongoose.Types.ObjectId(author)
+                author: mongoose.Types.ObjectId(author),
+                upvotes: upvotes
             });
             await Post.findByIdAndUpdate(
                 { _id: mongoose.Types.ObjectId(postId) },
