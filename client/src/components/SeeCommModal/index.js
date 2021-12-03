@@ -22,11 +22,11 @@ const SeeCommModal = (props) => {
       >
     {props.commData.map(comment => {
        return (
-          <div className="row">
+          <div key={comment._id} className="row">
             <div className="col s12 m12">
               <div className="blue-grey darken-1">
                 <div className="card-content white-text">
-                  <h8 className="comment-author">By: {comment.author.username}</h8>
+                  <h6 className="comment-author">By: {comment.author.username}</h6>
                   <p>{comment.content}</p>
                   <p>{comment.upvotes}</p>
                 </div>

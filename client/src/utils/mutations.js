@@ -54,15 +54,25 @@ export const CREATE_COMMENT = gql`
 export const REMOVE_POST = gql`
   mutation removePost($postId: ID!, $topicId: ID!) {
     removePost(postId: $postId, topicId: $topicId) {
-      _id
-      question
-      content
-      author {
         _id
-      }
-      topic {
-        _id
-      }
+        name
+        posts {
+            _id
+            question
+            content
+            author {
+                _id
+                username
+            }
+            comments {
+                content
+                author {
+                    _id
+                    username
+                }
+                upvotes
+            }
+        }
     }
   }
 `;

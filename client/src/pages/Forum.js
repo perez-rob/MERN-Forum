@@ -32,7 +32,7 @@ const Forum = () => {
           ) : (
             <div className="codetopic">
               {topicData.map((topic) => (
-                <Category name={topic.name} />
+                <Category key={topic._id} name={topic.name} />
               ))}
             </div>
           )}

@@ -15,7 +15,7 @@ import { Zoom, Box, Button } from '@mui/material';
 
 //!================================================
 
-//*================================================
+//?================================================
 const Topic = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,24 +56,29 @@ const Topic = () => {
   
   useEffect(() => {
     if(!loading){
+      let tempState = {};
     postArray.forEach(post => {
       if(loggedUser._id === post.author._id){
-        setSnackOpen({...snackOpen, [post._id]: false})
+        tempState[post._id] = false;
       }
     })
+    setSnackOpen(tempState);
   }
 
   },[loading])
   
   
-
+  const junk = () => {
+  
+    console.log("flip", snackOpen);
+  };
   const handleClose = (postTarget) => {
   
     setSnackOpen({...snackOpen, [postTarget]: false});
   };
 
-  const handleTryDelete = (event, postTarget) => {    
-    setTargetPostId(event.target.parentElement.dataset.postId);
+  const handleTryDelete = (postTarget) => {    
+    setTargetPostId(postTarget);
     setSnackOpen({...snackOpen, [postTarget]: true});
   };
 
@@ -101,7 +106,7 @@ const Topic = () => {
           <div className="container forum-topic">
             <div className="row forum-content">
               <div className="col s8">
-                <h4 className="topic-header" >
+                <h4 className="topic-header" onClick={junk} >
                   Welcome to the {forumName} Forum
                 </h4>
               </div>
@@ -112,7 +117,7 @@ const Topic = () => {
     {loading ? (<h2>LOADING.......</h2>)
     : postArray.map(post => {
       return (
-              <div className="col s12 m12">
+              <div key={post._id} className="col s12 m12">
                 <div className="darken-1 topic-card" >
                   
                   <div className="card-content topic-text">
@@ -121,7 +126,7 @@ const Topic = () => {
                     <div className="post-author-plus">
                         <h5 className="post-author">By: {post.author.username}</h5>
 
-                        <Zoom in={snackOpen[post._id]} mountOnEnter unmountOnExit >
+                        <Zoom in={snackOpen[post._id]} timeout={{ enter: 1000, exit: 500 }} mountOnEnter unmountOnExit >
                           <div className="toasty">
                             <h5>Delete Forever?</h5>
                             <Button variant="contained" color="error" onClick={() => handleDeletePost(post._id)}>Yes</Button>
@@ -130,13 +135,13 @@ const Topic = () => {
                           </div>
                         </Zoom>
 
-                        <Button className="del-comm-btn" variant="contained" size="small" color="warning" endIcon={<DeleteForeverRoundedIcon />}data-postId={post._id} onClick={(e) => handleTryDelete(e, post._id)}>Delete Post</Button>
+                        <Button className="del-comm-btn" variant="contained" size="small" color="warning" endIcon={<DeleteForeverRoundedIcon />} onClick={() => handleTryDelete( post._id)}>Delete Post</Button>
 
                       </div>
                          :
                     <h5 className="post-author">By: {post.author.username}</h5>
                     }
-                    <span class="card-title">{post.question}</span>
+                    <span className="card-title">{post.question}</span>
                     <p>{post.content}</p>
                   </div>
                   {/* display flex on following div so that the button goes beside the input */}

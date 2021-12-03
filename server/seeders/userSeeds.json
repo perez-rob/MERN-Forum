@@ -1,9 +1,5 @@
 [
-  {
-    "username": "Rob",
-    "email": "rob@rob.com",
-    "password" : "123123123"
-  },
+  {"username": "Rob","email": "rob@rob.com","password":"123123123"},
   {
     "username": "Parker",
     "email": "parker@gmail.com",

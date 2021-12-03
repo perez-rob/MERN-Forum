@@ -123,7 +123,12 @@ db.once('open', async () => {
 
         let sayWhat = await setupPosts();
         console.log(sayWhat)
-        console.log('all done!');
+        console.log('all done!\n');
+        console.log("===================\n")
+        console.log(users[0])
+        console.log("===================\n")
+        console.log(posts[0])
+        console.log("===================\n")
         process.exit(0);
     } catch (err) {
         throw err;

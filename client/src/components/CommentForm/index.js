@@ -54,7 +54,7 @@ export default function CommentForm(props) {
         value={postFormData.content}
         onChange={handleInputChange}
       ></input>
-      <label for={parentPost}>Enter your comments here</label>
+      <label htmlFor={parentPost}>Enter your comments here</label>
     </div>
     <button
       className="btn waves-effect waves-light col s2 postBtn"

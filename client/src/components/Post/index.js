@@ -46,7 +46,7 @@ export default function AddAPost(props) {
   return (
     <div className="postForm">
       <form onSubmit={handleFormSubmit}>
-        <div classname='inputBox'>
+        <div className='inputBox'>
           <label htmlFor="author">
             Your username
           </label>
@@ -60,7 +60,7 @@ export default function AddAPost(props) {
 
           />
         </div>
-        <div classname='inputBox'>
+        <div className='inputBox'>
           <label htmlFor="postTitle">
             Post Title
           </label>
@@ -74,7 +74,7 @@ export default function AddAPost(props) {
           />
         </div>
 
-        <div classname='inputBox'>
+        <div className='inputBox'>
           <label htmlFor="postContent">
             Post Content
           </label>
@@ -88,7 +88,7 @@ export default function AddAPost(props) {
           />
         </div>
 
-        <div classname='inputBox'>
+        <div className='inputBox'>
           <button
             type="submit"
             variant="success"

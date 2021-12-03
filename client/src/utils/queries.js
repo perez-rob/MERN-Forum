@@ -33,6 +33,7 @@ query getTopicByName($name: String!) {
                 username
             }
             comments {
+                _id
                 content
                 author {
                     _id

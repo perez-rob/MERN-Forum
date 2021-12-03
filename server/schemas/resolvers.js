@@ -55,18 +55,19 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-            console.log(password)
             if (!user) {
                 throw new AuthenticationError('No user exists');
             }
 
             const correctPw = await user.isCorrectPassword(password);
-            console.log("PW", correctPw)
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect password');
             }
 
             const token = signToken(user);
+            console.log("=================")
+            console.log(token)
+            console.log("=================")
             return { token, user };
         },
         createComment: async(parent, {content, author, upvotes, postId}, context) => {
@@ -116,15 +117,27 @@ const resolvers = {
             );
             return newPost;
         },
-        removePost: async (parent, { postId }, context) => {
+        removePost: async (parent, { postId, topicId }, context) => {
+            console.log("MMEEOOWW");
             if (context.user) {
-                const updatedPost = await Post.findOneAndUpdate(
-                  { _id: context.user._id },
-                  { $pull: { savedBooks: { bookId } } },
+                const updatedTopic = await Topic.findByIdAndUpdate(
+                  { _id: mongoose.Types.ObjectId(topicId) },
+                  { $pull: { posts: { postId } } },
                   { new: true }
                 );
-        
-                return updatedUser;
+                await User.findByIdAndUpdate(
+                    { _id: mongoose.Types.ObjectId(context.user._id) },
+                    { $pull: { posts: { postId } } },
+                    { new: true }
+                  );
+                  const commentList = await Post.findById(
+                    mongoose.Types.ObjectId(postId),
+                     "comments"
+                  );
+
+                  console.log(commentList)
+
+                return updatedTopic;
               }
         
               throw new AuthenticationError('You need to be logged in!');
