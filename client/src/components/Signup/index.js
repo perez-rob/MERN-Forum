@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ADD_USER } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
@@ -30,6 +30,7 @@ const SignupForm = () => {
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
+      console.error("queryError: ", error);
     }
 
     setUserFormData({

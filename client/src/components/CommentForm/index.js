@@ -1,8 +1,7 @@
-import React, { useState, useEffect} from "react";
+import React, { useState} from "react";
 import { CREATE_COMMENT } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
-import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function CommentForm(props) {
@@ -25,7 +24,7 @@ export default function CommentForm(props) {
     try {
       console.log("HEE0", postFormData, "parent:",parentPost)
 
-      const { data } = await createComment({
+      await createComment({
         variables: {content: postFormData.content,
           author: postFormData.author,
           upvotes: postFormData.upvotes,
@@ -40,6 +39,8 @@ export default function CommentForm(props) {
   
     } catch (e) {
       console.error("error: ", e);
+      console.error("queryError: ", error);
+
     }
   };
   return (

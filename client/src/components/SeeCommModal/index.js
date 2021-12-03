@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import { REMOVE_COMMENT } from "../../utils/mutations";
-import { useMutation } from '@apollo/client';
-import Auth from '../../utils/auth';
-import M from "materialize-css";
-import "materialize-css/dist/css/materialize.min.css";
+import React from "react";
+// import { REMOVE_COMMENT } from "../../utils/mutations";
+// import { useMutation } from '@apollo/client';
+// import Auth from '../../utils/auth';
 import "./style.css";
 import { Collapsible, CollapsibleItem } from 'react-materialize';
 

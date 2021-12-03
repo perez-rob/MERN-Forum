@@ -1,5 +1,4 @@
 import React from "react";
-import { NavItem, Icon } from "materialize-css";
 import { Link } from "react-router-dom";
 import Auth from '../../utils/auth';
 

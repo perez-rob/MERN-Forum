@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import { Sidenav } from "materialize-css";
 import profileImage from "../../assets/image.png";
 import "./style.css";
 
-import { useSearchParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { GET_ME } from "../../utils/queries"
+// import { useSearchParams } from "react-router-dom";
+// import { useQuery } from "@apollo/client";
+// import { GET_ME } from "../../utils/queries"
 
 
     

@@ -21,7 +21,7 @@ export default function AddAPost(props) {
     try {
       console.log("HEE0", postFormData)
 
-      const { data } = await createPost({
+      await createPost({
         variables: { question: postFormData.question,
           content: postFormData.content,
           author: postFormData.author,
@@ -38,6 +38,7 @@ export default function AddAPost(props) {
 
     } catch (e) {
       console.error("error: ", e);
+      console.error("queryError: ", error);
     }
 
    
