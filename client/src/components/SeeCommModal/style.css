@@ -5,3 +5,31 @@
 .comment-author {
   font-weight: bold;
 }
+
+.delete-box {
+    display:flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+  
+}
+
+.comm-del {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  text-align: center;
+  color: black;
+  font-weight: 900;
+  font-size:medium;
+  background-color: #fff3ec;
+  border: solid black 2px;
+  border-radius: 10px;
+  margin:10px;
+  padding: 5px;
+}
+
+.comm-del-btns {
+  display: flex;
+  flex-direction: row;
+}

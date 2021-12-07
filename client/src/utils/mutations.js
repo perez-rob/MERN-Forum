@@ -28,12 +28,15 @@ export const ADD_USER = gql`
 export const REMOVE_COMMENT = gql`
 mutation removeComment($commentId: ID!, $postId: ID!) {
   removeComment(commentId: $commentId, postId: $postId) {
+    _id
+    question
+    content
+    author {
       _id
-      content
-      author {
-        _id
-      }
-      upvotes
+    }
+    topic {
+      _id
+    }
   }
 }
 `;

@@ -88,15 +88,23 @@ const resolvers = {
             );
             return newComment;
         },
-        removeComment: async (parent, { commentId }, context) => {
+        removeComment: async (parent, { commentId, postId }, context) => {
             if (context.user) {
-                const updatedPost = await Post.findOneAndUpdate(
-                  { _id: context.user._id },
-                  { $pull: { savedBooks: { bookId } } },
-                  { new: true }
-                );
-        
-                return updatedUser;
+
+                const updatedPost = await Post.findByIdAndUpdate(
+                    mongoose.Types.ObjectId(postId),
+                    { $pull: { comments: mongoose.Types.ObjectId(commentId) } },
+                    { new: true }
+                  );
+
+                  await User.findByIdAndUpdate(
+                    mongoose.Types.ObjectId(context.user._id),
+                    { $pull: { comments: mongoose.Types.ObjectId(commentId) } },
+                    { new: true }
+                  );
+                  await Comment.deleteOne({_id: mongoose.Types.ObjectId(commentId) })
+
+                return updatedPost;
               }
         
               throw new AuthenticationError('You need to be logged in!');
@@ -118,7 +126,6 @@ const resolvers = {
             return newPost;
         },
         removePost: async (parent, { postId, topicId }, context) => {
-            console.log("MMEEOOWW");
             if (context.user) {
                 const commentList = await Post.findById(
                     mongoose.Types.ObjectId(postId),
@@ -137,21 +144,19 @@ const resolvers = {
                     { $pull: { posts: mongoose.Types.ObjectId(postId) } },
                     { new: true }
                   );
-                  
                   if (commentList.comments.length){
                     commentList.comments.forEach(async (comment) => {
-                        await Comment.remove({_id: comment});
-                        console.log("pOoNy", context.user._id)
-
-                        await User.findByIdAndUpdate(
-                            mongoose.Types.ObjectId(context.user._id),
-                            { $pull: { comments: comment } },
+                       await User.findOneAndUpdate(
+                            {comments: mongoose.Types.ObjectId(comment) },
+                            { $pull: { comments: mongoose.Types.ObjectId(comment) } },
                             { new: true }
                           );
+
+                          await Comment.deleteOne({_id: comment});
                     })
                   }
                   
-                  await Post.remove({_id: mongoose.Types.ObjectId(postId) })
+                  await Post.deleteOne({_id: mongoose.Types.ObjectId(postId) })
 
                 return updatedTopic;
               }

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SeeCommModal from "../components/SeeCommModal";
 import AddAPost from "../components/Post";
@@ -68,10 +68,7 @@ const Topic = () => {
   },[loading])
   
   
-  const junk = () => {
-  
-    console.log("flip", snackOpen);
-  };
+
   const handleClose = (postTarget) => {
   
     setSnackOpen({...snackOpen, [postTarget]: false});
@@ -83,10 +80,10 @@ const Topic = () => {
   };
 
   const handleDeletePost = async (postTarget) => {
-    setSnackOpen({...snackOpen, [postTarget]: false});
     const { data: rmpData } = await removePost({
       variables: { postId: targetPostId, topicId: postData._id },
     });
+    setSnackOpen({...snackOpen, [postTarget]: false});
     console.log("rmp", rmpData);
     console.log("waThs", watThis)
 
@@ -106,7 +103,7 @@ const Topic = () => {
           <div className="container forum-topic">
             <div className="row forum-content">
               <div className="col s8">
-                <h4 className="topic-header" onClick={junk} >
+                <h4 className="topic-header" >
                   Welcome to the {forumName} Forum
                 </h4>
               </div>
@@ -151,7 +148,7 @@ const Topic = () => {
                       Comments{" "}
                       <span className="comments material-icons">forum</span>
                     </h6>
-                    <SeeCommModal commData={post.comments} />
+                    <SeeCommModal postId={post._id} commData={post.comments}/>
                   </div>
                 </div>
               </div>)}
