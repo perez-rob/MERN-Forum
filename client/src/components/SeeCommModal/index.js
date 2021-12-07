@@ -2,6 +2,8 @@ import React from "react";
 // import { REMOVE_COMMENT } from "../../utils/mutations";
 // import { useMutation } from '@apollo/client';
 // import Auth from '../../utils/auth';
+import 'materialize-css';
+
 import "./style.css";
 import { Collapsible, CollapsibleItem } from 'react-materialize';
 
@@ -9,6 +11,7 @@ import { Collapsible, CollapsibleItem } from 'react-materialize';
 const SeeCommModal = (props) => {
 
 
+  console.log("peeeee",props.comments)
       return (
         <>
         <div>

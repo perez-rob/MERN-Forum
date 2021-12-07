@@ -120,22 +120,38 @@ const resolvers = {
         removePost: async (parent, { postId, topicId }, context) => {
             console.log("MMEEOOWW");
             if (context.user) {
-                const updatedTopic = await Topic.findByIdAndUpdate(
-                  { _id: mongoose.Types.ObjectId(topicId) },
-                  { $pull: { posts: { postId } } },
-                  { new: true }
-                );
-                await User.findByIdAndUpdate(
-                    { _id: mongoose.Types.ObjectId(context.user._id) },
-                    { $pull: { posts: { postId } } },
-                    { new: true }
-                  );
-                  const commentList = await Post.findById(
+                const commentList = await Post.findById(
                     mongoose.Types.ObjectId(postId),
                      "comments"
                   );
 
-                  console.log(commentList)
+                const updatedTopic = await Topic.findByIdAndUpdate(
+                  mongoose.Types.ObjectId(topicId),
+                  { $pull: { posts: mongoose.Types.ObjectId(postId) } },
+                  { new: true }
+                );
+
+
+                await User.findByIdAndUpdate(
+                    mongoose.Types.ObjectId(context.user._id),
+                    { $pull: { posts: mongoose.Types.ObjectId(postId) } },
+                    { new: true }
+                  );
+                  
+                  if (commentList.comments.length){
+                    commentList.comments.forEach(async (comment) => {
+                        await Comment.remove({_id: comment});
+                        console.log("pOoNy", context.user._id)
+
+                        await User.findByIdAndUpdate(
+                            mongoose.Types.ObjectId(context.user._id),
+                            { $pull: { comments: comment } },
+                            { new: true }
+                          );
+                    })
+                  }
+                  
+                  await Post.remove({_id: mongoose.Types.ObjectId(postId) })
 
                 return updatedTopic;
               }
