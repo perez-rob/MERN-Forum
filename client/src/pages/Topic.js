@@ -107,6 +107,8 @@ const Topic = () => {
                   Welcome to the {forumName} Forum
                 </h4>
               </div>
+
+
               <div className="col s4">
                 {loading ? <p></p> : <AddAPost topicId={postData._id}/>}
               </div>
