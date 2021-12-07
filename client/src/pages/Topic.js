@@ -12,6 +12,7 @@ import Auth from "../utils/auth";
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 // import M from "materialize-css";
 import { Zoom, Box, Button } from '@mui/material';
+import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 
 //!================================================
 
@@ -124,17 +125,29 @@ const Topic = () => {
                     ? 
                     <div className="post-author-plus">
                         <h5 className="post-author">By: {post.author.username}</h5>
+                        <AnimateSharedLayout  type="crossfade">
 
-                        <Zoom in={snackOpen[post._id]} timeout={{ enter: 1000, exit: 500 }} mountOnEnter unmountOnExit >
-                          <div className="toasty">
+                        <motion.div     transition={{ duration: 1, type: "tween" }}
+
+ layoutId={`btn-${post._id}`} ><Button className="del-comm-btn" variant="contained" size="small" color="warning" endIcon={<DeleteForeverRoundedIcon />} onClick={() => handleTryDelete( post._id)}>Delete Post</Button></motion.div>
+
+                        <AnimatePresence>
+                        
+                        {/* <Zoom in={snackOpen[post._id]} timeout={{ enter: 1000, exit: 500 }} mountOnEnter unmountOnExit > */}
+                       {snackOpen[post._id] && <motion.div    transition={{ duration: 1, type: "tween" }}
+ layoutId={`btn-${post._id}`} >
+                          <div className="toasty" >
                             <h5>Delete Forever?</h5>
                             <Button variant="contained" color="error" onClick={() => handleDeletePost(post._id)}>Yes</Button>
                             <hr></hr>
                             <Button variant="contained" color="success" onClick={() => handleClose(post._id)}>No</Button>
                           </div>
-                        </Zoom>
+                          </motion.div>}
 
-                        <Button className="del-comm-btn" variant="contained" size="small" color="warning" endIcon={<DeleteForeverRoundedIcon />} onClick={() => handleTryDelete( post._id)}>Delete Post</Button>
+                        {/* </Zoom> */}
+                        </AnimatePresence>
+
+                        </AnimateSharedLayout>
 
                       </div>
                          :

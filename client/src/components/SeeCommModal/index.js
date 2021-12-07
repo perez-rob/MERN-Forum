@@ -8,6 +8,7 @@ import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import "./style.css";
 import { Collapsible, CollapsibleItem } from 'react-materialize';
 import {Zoom, Button } from '@mui/material';
+import { useCycle, useAnimation, motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 
 
 const SeeCommModal = (props) => {
@@ -56,6 +57,35 @@ const SeeCommModal = (props) => {
       window.location.reload();        
     };
 
+    const [isOpen, toggleOpen] = useCycle(false, true);
+
+    const containerSpecs = {
+      open: {
+        transition: { staggerChildren: 1, delayChildren: 0.5 }
+      },
+      closed: {
+        transition: { staggerChildren: 1 }
+      }
+    }
+
+    const liSpecs = {
+      open: {
+        x: [200,0],
+        opacity: 1,
+      },
+      closed: {
+        x: [200,0],
+        opacity: 0,
+      }
+    };
+
+    const commControls = useAnimation()
+
+    const handleAnimate = async () => {
+      console.log("Animate!")
+      toggleOpen();
+      // await  commControls.start({ x: [150,0] })
+    };
 
       return (
         <>
@@ -65,10 +95,18 @@ const SeeCommModal = (props) => {
         expanded={false}
         header="SEE COMMENTS."
         node="div"
+        onClick={handleAnimate}
       >
+          <motion.ul animate={isOpen ? "open" : "closed"} variants={containerSpecs}>
     {props.commData.map(comment => {
        return (
-          <div key={comment._id} className="row">
+          <motion.li 
+          variants={liSpecs}
+          transition={{
+            duration: 1
+          }}
+           key={comment._id} 
+           className="row">
             <div className="col s12 m12">
               <div className="blue-grey darken-1">
                 <div className="card-content white-text">
@@ -76,17 +114,24 @@ const SeeCommModal = (props) => {
                 {loggedUser._id === comment.author._id 
                 ? (<div className="delete-box">
                     <h6 className="comment-author">By: {comment.author.username}</h6>
-                    <Zoom in={zoomOpen[comment._id]} timeout={{ enter: 1000, exit: 500 }} mountOnEnter unmountOnExit >
-                          <div className="comm-del">
+                    <AnimateSharedLayout  type="crossfade">
+
+                    <motion.div transition={{ duration: 1}} layoutId={`btn-${comment._id}`} ><Button className="del-comm-btn" variant="contained" size="small" color="warning" endIcon={<DeleteForeverRoundedIcon />} onClick={() => handleTryDelete( comment._id)}>Delete Comment</Button></motion.div>
+                    <AnimatePresence>
+
+                    {/* <Zoom in={zoomOpen[comment._id]} timeout={{ enter: 1000, exit: 500 }} mountOnEnter unmountOnExit > */}
+                          {zoomOpen[comment._id] && <motion.div transition={{ duration: 1}} layoutId={`btn-${comment._id}`} ><div className="comm-del">
                             <h5>Delete Forever?</h5>
                             <div className="comm-del-btns">
                             <Button variant="contained" color="error" onClick={() => handleDeleteComment(comment._id)}>Yes</Button>
                             <hr></hr>
                             <Button variant="contained" color="success" onClick={() => handleClose(comment._id)}>No</Button>
                             </div>
-                          </div>
-                        </Zoom>
-                    <Button className="del-comm-btn" variant="contained" size="small" color="warning" endIcon={<DeleteForeverRoundedIcon />} onClick={() => handleTryDelete( comment._id)}>Delete Comment</Button>
+                          </div></motion.div>}
+                        {/* </Zoom> */}
+                        </AnimatePresence>
+
+                        </AnimateSharedLayout>
 
                   </div>)
                   : (<h6 className="comment-author">By: {comment.author.username}</h6>) 
@@ -96,11 +141,12 @@ const SeeCommModal = (props) => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.li>
 
        )
      })
   }
+  </motion.ul>
            </CollapsibleItem>
           </Collapsible>
         </div>
@@ -110,3 +156,6 @@ const SeeCommModal = (props) => {
 };
 
 export default SeeCommModal;
+
+
+//====================

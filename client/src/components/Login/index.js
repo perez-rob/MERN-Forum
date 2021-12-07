@@ -11,7 +11,11 @@ const Login = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(`FIRST: ${name} is the 'name' and ${value} is the 'value'`); 
     setUserFormData({ ...userFormData, [name]: value });
+    console.log(`SECOND: ${userFormData} is the userFormData state`);
+    console.log(userFormData);
+    console.log("========================")
   };
 
   const handleFormSubmit = async (event) => {
