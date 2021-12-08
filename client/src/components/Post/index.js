@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { CREATE_POST } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
-
+import { useCycle, motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
+import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
+import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
+import Fab from '@mui/material/Fab';
+import "./style.css"
 
 export default function AddAPost(props) {
   const [postFormData, setPostFormData] = useState({ question: '', content: '', author: Auth.getProfile().data._id || "", topic: props.topicId });
@@ -43,10 +47,37 @@ export default function AddAPost(props) {
 
    
   };
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const postVariants = {
+    open: {
+      transform: "rotate3d(1,0,0,0deg)",
+      transformOrigin: "bottom",
+      opacity: 1,
+      transition: {
+        ease: "easeOut",
+        duration:0.8
+      }
+    },
+    closed: {
+      transform: "rotate3d(1,0,0,90deg)",
+      transformOrigin: "bottom",
+      opacity: 1,
+      transition: {
+        ease: "easeOut",
+        duration:0.8
 
+      }
+    }
+  };
   return (
-    <div className="postForm">
-      <form onSubmit={handleFormSubmit}>
+    <motion.div
+    className="post-btn-container"
+    initial="closed"
+    animate={isOpen ? "open" : "closed"}
+    >
+
+    <motion.div variants={postVariants} className="postForm">
+      <form className="post-form" onSubmit={handleFormSubmit}>
         <div className='inputBox'>
           <label htmlFor="author">
             Your username
@@ -99,6 +130,10 @@ export default function AddAPost(props) {
           </button>
         </div>
       </form>
-    </div >
+    </motion.div >
+    <Fab onClick={() => toggleOpen()} color={isOpen ? "secondary":"primary"} aria-label="add">
+        {isOpen ? <CancelTwoToneIcon /> : <AddBoxTwoToneIcon />}
+      </Fab>
+    </motion.div>
   );
 };

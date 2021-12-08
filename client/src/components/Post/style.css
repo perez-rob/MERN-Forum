@@ -1,0 +1,10 @@
+.post-btn-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: row;
+
+}

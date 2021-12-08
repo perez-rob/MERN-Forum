@@ -12,6 +12,9 @@
 }
 
 .forum-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background-color: #ffffff;
   border: 5px solid #55423d;
   border-radius: 25px;

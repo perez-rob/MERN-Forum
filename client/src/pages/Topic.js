@@ -103,14 +103,14 @@ const Topic = () => {
     <div className="study-topics">
           <div className="container forum-topic">
             <div className="row forum-content">
-              <div className="col s8">
+              <div className="col s12">
                 <h4 className="topic-header" >
                   Welcome to the {forumName} Forum
                 </h4>
               </div>
 
 
-              <div className="col s4">
+              <div className="col s12">
                 {loading ? <p></p> : <AddAPost topicId={postData._id}/>}
               </div>
 
