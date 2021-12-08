@@ -50,21 +50,21 @@ export default function AddAPost(props) {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const postVariants = {
     open: {
-      transform: "rotate3d(1,0,0,0deg)",
+      transform: "rotate3d(1,-0.006,0,0deg)",
       transformOrigin: "bottom",
       opacity: 1,
       transition: {
         ease: "easeOut",
-        duration:0.8
+        duration:1.2
       }
     },
     closed: {
-      transform: "rotate3d(1,0,0,90deg)",
+      transform: "rotate3d(1,-0.006,0,90deg)",
       transformOrigin: "bottom",
       opacity: 1,
       transition: {
         ease: "easeOut",
-        duration:0.8
+        duration:1.2
 
       }
     }
