@@ -18,6 +18,10 @@ const Login = () => {
     console.log("========================")
   };
 
+  const junk = () => {
+    console.log(userFormData)
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -41,6 +45,7 @@ const Login = () => {
   return (
     <div>
       <form className="formFields" onSubmit={handleFormSubmit}>
+        <p onClick={junk}>CLICK FOR DATA</p>
         <div className="formField">
           <label className="formFieldLabel" htmlFor="name">
             Email

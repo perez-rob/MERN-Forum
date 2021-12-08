@@ -61,21 +61,23 @@ const SeeCommModal = (props) => {
 
     const containerSpecs = {
       open: {
-        transition: { staggerChildren: 1, delayChildren: 0.5 }
+        transition: { staggerChildren: 0.2, delayChildren: 0.1 }
       },
       closed: {
-        transition: { staggerChildren: 1 }
+        transition: { staggerChildren: 0.2, staggerDirection: -1 }
       }
     }
 
     const liSpecs = {
       open: {
-        x: [200,0],
+        x: 0,
         opacity: 1,
+        transition:{duration: 0.2}
       },
       closed: {
-        x: [200,0],
+        x: 150,
         opacity: 0,
+        transition:{duration: 0.2}
       }
     };
 
@@ -102,9 +104,6 @@ const SeeCommModal = (props) => {
        return (
           <motion.li 
           variants={liSpecs}
-          transition={{
-            duration: 1
-          }}
            key={comment._id} 
            className="row">
             <div className="col s12 m12">
